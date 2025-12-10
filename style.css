@@ -1,0 +1,173 @@
+/* --- GLOBAL RESET & FONT --- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif; 
+    color: white; 
+    overflow-x: hidden; 
+}
+
+/* --- 1. HERO SECTION (Full-Screen Background) --- */
+.hero-section {
+    position: relative; 
+    width: 100%;
+    height: 100vh; 
+    
+    /* DEFAULT BACKGROUND: Iligan City (Requires iligan_city_default.jpg in the same folder) */
+    background-image: url('iligan.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-color: #fd0505; 
+    
+    /* MAO NI ANG NAGHATAG SA SMOOTH TRANSITION */
+    transition: background-image 0.5s ease-in-out; 
+}
+
+/*NAVIGATION BAR --- */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px;
+    z-index: 10;
+}
+.logo { font-size: 1.2em; font-weight: bold; }
+
+/* MAIN OVERLAID TEXT ug BUTTON --- */
+.hero-content {
+    position: absolute;
+    top: 70%; 
+    left: 5%; 
+    transform: translateY(-70%); 
+    width: 30%; 
+    z-index: 10;
+    font-size: 1.2rem;
+}
+.hero-content h1 {
+    font-size: 4rem; 
+    margin: 0;
+    line-height: 1;
+}
+
+/* --- DEFAULT BUTTON STYLE --- */
+.discover-btn {
+    background-color: transparent; 
+    color: white; 
+    border: 2px solid white; 
+    padding: 10px 25px; 
+    font-size: 0.9em;
+    font-weight: bold;
+    letter-spacing: 2px; 
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+/* --- LOGIC ARON MATAGO ANG DEFAULT BUTTON (Iligan City View) --- */
+#mainDiscoverBtn {
+    opacity: 0;
+    pointer-events: none; /* Dili ma-click bisan pa og invisible */
+    transition: opacity 0.5s ease, transform 0.3s ease;
+}
+
+/* --- LOGIC ARON MOPAKITA ANG BUTTON (Kung na-click na ang Falls) --- */
+#mainDiscoverBtn.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.discover-btn:hover {
+    background-color: white; 
+    color: black; 
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+}
+
+.image-carousel {
+    position: absolute; 
+    bottom: 50px; 
+    left: 500px; 
+    width: calc(100% - 500px); 
+    display: flex; 
+    flex-direction: column; 
+    z-index: 5;
+}
+
+/* CARD LIST  */
+.card-list {
+    display: flex; 
+    flex-wrap: nowrap; 
+    overflow-x: hidden; 
+    scroll-behavior: smooth; 
+    padding-left: 50px; 
+}
+.card-list::-webkit-scrollbar {
+    height: 0; 
+}
+
+/* INDIVIDUAL CARDS NI */
+.card {
+    position: relative;
+    cursor: pointer; 
+    flex-shrink: 0; 
+    width: 200px; 
+    height: 300px; 
+    margin-right: 25px; 
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, outline 0.3s;
+}
+.card:hover {
+    transform: translateY(-20px); 
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8); 
+}
+.card.active-card {
+    outline: 5px solid rgba(17, 0, 255, 0.7); 
+    transform: translateY(-20px); 
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* TEXT SA CARD --- */
+.card-overlay-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 15px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)); 
+}
+.card-title {
+    margin: 0;
+    font-size: 1.1em;
+    line-height: 1.2;
+    font-weight: bold;
+}
+
+/* (Buttons) --- */
+.carousel-controls {
+    position: absolute; 
+    bottom: -60px; 
+    left: 50px; 
+    z-index: 10;
+}
+.arrow-btn {
+    background-color: rgba(255, 255, 255, 0.2); 
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%; 
+    width: 40px;
+    height: 40px;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: background-color 0.3s;
+}
+.arrow-btn:hover {
+    background-color: rgba(255, 255, 255, 0.5); 
+}
