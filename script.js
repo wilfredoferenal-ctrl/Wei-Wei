@@ -60,6 +60,13 @@
                 }
             }
             
+
+             let cardFilename = newTitle.toLowerCase().split(' ')[0]; 
+
+                if (mainDiscoverBtn) {
+                    mainDiscoverBtn.setAttribute('data-target-url', `${cardFilename}.html`);
+                }
+
             // I-scroll ang card nga gi-click aron ma-center sa view
             card.scrollIntoView({
                 inline: 'center', 
@@ -75,3 +82,30 @@
             mainDiscoverBtn.classList.remove('visible'); 
         }
     });
+
+
+const pages = [
+    "maria.html",
+    "tinago.html",
+    "mimbalot.html",
+    "poldo.html",
+    "hindang.html",
+    "dodiogon.html",
+    "pampam.html",
+    "sikyop.html"
+];
+
+
+function goToSpecificLocation() {
+    const button = document.getElementById('mainDiscoverBtn');
+    
+    let destinationUrl = button.getAttribute('data-target-url');
+
+    if (!destinationUrl) {
+        destinationUrl = "maria.html"; 
+    }
+
+    window.location.href = destinationUrl;
+}
+
+document.getElementById('mainDiscoverBtn').addEventListener('click', goToSpecificLocation);
