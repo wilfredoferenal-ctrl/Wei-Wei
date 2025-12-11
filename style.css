@@ -6,19 +6,19 @@ body {
     overflow-x: hidden; 
 }
 
-/* --- 1. HERO SECTION (Full-Screen Background) --- */
+/* (Full-Screen Background ni*/
 .hero-section {
     position: relative; 
     width: 100%;
     height: 100vh; 
     
-    /* DEFAULT BACKGROUND: Iligan City (Requires iligan_city_default.jpg in the same folder) */
+    /* DEFAULT BACKGROUND: Iligan City */
     background-image: url('iligan.jpg'); 
     background-size: cover;
     background-position: center;
-    background-color: #fd0505; 
+    background-color: #ffffffff; 
     
-    /* MAO NI ANG NAGHATAG SA SMOOTH TRANSITION */
+    /* MAO NI ANG GIVE SA SMOOTH TRANSITION */
     transition: background-image 0.5s ease-in-out; 
 }
 
@@ -35,7 +35,7 @@ body {
 /* MAIN OVERLAID TEXT ug BUTTON --- */
 .hero-content {
     position: absolute;
-    top: 70%; 
+    top: 60%; 
     left: 5%; 
     transform: translateY(-70%); 
     width: 30%; 
@@ -43,7 +43,7 @@ body {
     font-size: 1.2rem;
 }
 .hero-content h1 {
-    font-size: 4rem; 
+    font-size: 5rem; 
     margin: 0;
     line-height: 1;
 }
@@ -53,7 +53,7 @@ body {
     background-color: transparent; 
     color: white; 
     border: 2px solid white; 
-    padding: 10px 25px; 
+    padding: 10px 20px; 
     font-size: 0.9em;
     font-weight: bold;
     letter-spacing: 2px; 
