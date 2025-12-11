@@ -1,0 +1,264 @@
+/* =========================================
+   1. ANIMATIONS (Keep this at the top)
+   ========================================= */
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+    40% {transform: translateX(-50%) translateY(-10px);}
+    60% {transform: translateX(-50%) translateY(-5px);}
+}
+
+/* =========================================
+   2. GLOBAL BODY SETTINGS
+   ========================================= */
+body {
+    /* Base Colors */
+    background-color: #0b140e; 
+    color: #b0b0b0;
+    font-family: 'Lato', sans-serif;
+    
+    /* Reset margins */
+    margin: 0;
+    padding: 0;
+    
+    /* ENABLE SCROLLING (Crucial for the gallery) */
+    overflow-x: hidden; 
+    overflow-y: auto;   
+
+    /* Apply the Entry Animation to the whole page */
+    animation: fadeInSlide 1.2s ease-out forwards;
+}
+
+/* =========================================
+   3. HERO SECTION (The Top Part)
+   ========================================= */
+.hero-screen {
+    /* This section takes up exactly one full screen height */
+    height: 100vh; 
+    width: 100%;
+    
+    /* BACKGROUND IMAGE MOVED HERE (for Parallax effect) */
+    background-image: linear-gradient(to right, rgba(11, 20, 14, 0.95), rgba(11, 20, 14, 0.2)), url('mt.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* This makes the image stay still while you scroll */
+    
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* =========================================
+   4. NAVIGATION & BUTTONS
+   ========================================= */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    font-family: 'Cinzel', serif;
+    color: #1dc8a0; 
+}
+
+.logo-text {
+    font-size: 1.5rem; 
+    letter-spacing: 3px;
+}
+
+/* BACK BUTTON */
+.back-btn {
+    text-decoration: none;
+    color: #1dc8a0;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    padding: 8px 16px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.back-btn:hover {
+    color: #0b140e;
+    background-color: #1dc8a0;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(29, 200, 160, 0.6);
+    transform: translateX(-5px);
+}
+
+/* LAAG (ACTION) BUTTON */
+.laag-btn {
+    background: transparent;
+    border: 1px solid #1dc8a0;
+    color: #1dc8a0;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.laag-btn:hover {
+    background-color: #d4af37;
+    border-color: #d4af37;
+    color: #0b140e;
+    transform: translateY(-5px) scale(1.05); 
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+}
+
+.laag-btn:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* =========================================
+   5. TEXT CONTENT
+   ========================================= */
+.content-card {
+    padding-left: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    
+    /* Staggered animation for text */
+    animation: fadeInSlide 1.5s ease-out forwards; 
+}
+
+h1 {
+    font-family: 'Aerial', serif;
+    font-size: 4rem;
+    line-height: 1.1;
+    color: #e6cfa5;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-shadow: 0px 4px 10px rgba(0,0,0,0.5);
+}
+
+.separator {
+    width: 100px;
+    height: 2px;
+    background-color: #d4af37;
+    margin: 20px 0;
+}
+
+p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #cccccc;
+    max-width: 450px;
+    border-left: 2px solid #2a4031;
+    padding-left: 15px;
+}
+
+.material-symbols-outlined {
+    font-size: 1.2rem;
+}
+
+/* =========================================
+   6. SCROLL INDICATOR
+   ========================================= */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0.7;
+    animation: bounce 2s infinite;
+}
+
+.scroll-indicator p {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+
+/* =========================================
+   7. PHOTO GALLERY SECTION
+   ========================================= */
+.photo-gallery {
+    background-color: #0b140e;
+    padding: 80px 50px;
+    min-height: 100vh;
+}
+
+.gallery-title {
+    font-family: 'Cinzel', serif;
+    color: #e6cfa5;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    letter-spacing: 5px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.photo-card {
+    border-radius: 15px;
+    overflow: hidden;
+    height: 300px;
+    position: relative;
+    border: 1px solid #1dc8a0;
+    transition: transform 0.3s ease;
+}
+
+.photo-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 30px rgba(29, 200, 160, 0.2);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* =========================================
+   8. MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    
+    .hero-screen {
+        background-attachment: scroll; /* Disable parallax on mobile for performance */
+    }
+    
+    .content-card { 
+        padding-left: 20px; 
+        padding-right: 20px; 
+        align-items: center; 
+        text-align: center; 
+    }
+    
+    p { border-left: none; }
+    nav { padding: 20px; }
+    
+    .photo-gallery {
+        padding: 40px 20px;
+    }
+}
