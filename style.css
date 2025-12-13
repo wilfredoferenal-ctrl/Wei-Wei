@@ -272,4 +272,99 @@ body {
     color: #aaa;
     
 }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .navbar {
+        padding: 15px 20px;
+        position: absolute;
+        right: 0;
+        flex-direction: column;
+        background: rgba(2, 2, 51, 0.8);
+    }
+
+    .navbar .menu ul {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 15px;
+        text-align: center;
+        padding: 0;
+    }
+
+    .hero-content {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .hero-content .line1 {
+        font-size: 2.5rem; 
+        margin-top: 60px;
+    }
+
+    .hero-content .line2 {
+        font-size: 4.5rem;
+        line-height: 1.2;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    .selection-buttons {
+        margin-top: 50px;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 40px;
+    }
+
+    .action-btn {
+        width: 100%;
+    }
+
+    .content-container {
+        padding: 40px 20px;
+    }
+
+    .about-us-section {
+        flex-direction: column;
+    }
+
+    .about-us-title {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .about-us-title h1 {
+        font-size: 2rem;
+    }
+
+    .about-us-title h2 {
+        font-size: 3rem;
+    }
+
+    .text-and-contact {
+        width: 100%;
+        flex-direction: column;
+        padding-top: 10px;
+    }
+
+    
+    .about-text {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .about-text p {
+        font-size: 16px;
+    }
+
+    .contact-info {
+        width: 100%;
+    }
 }
