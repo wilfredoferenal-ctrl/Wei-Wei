@@ -1,173 +1,275 @@
-/* --- GLOBAL RESET & FONT --- */
-body {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); /* Added for About Section */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap'); /* Added if needed for line2 */
+
+
+/* --- Global Reset and Variables --- */
+* {
     margin: 0;
-    font-family: Arial, sans-serif; 
-    color: white; 
-    overflow-x: hidden; 
-}
-
-/* (Full-Screen Background ni*/
-.hero-section {
-    position: relative; 
-    width: 100%;
-    height: 100vh; 
-    
-    /* DEFAULT BACKGROUND: Iligan City */
-    background-image: url('iligan.jpg'); 
-    background-size: cover;
-    background-position: center;
-    background-color: #ffffffff; 
-    
-    /* MAO NI ANG GIVE SA SMOOTH TRANSITION */
-    transition: background-image 0.5s ease-in-out; 
-}
-
-/*NAVIGATION BAR --- */
-.main-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 50px;
-    z-index: 10;
-}
-.logo { font-size: 1.2em; font-weight: bold; }
-
-/* MAIN OVERLAID TEXT ug BUTTON --- */
-.hero-content {
-    position: absolute;
-    top: 60%; 
-    left: 5%; 
-    transform: translateY(-70%); 
-    width: 30%; 
-    z-index: 10;
-    font-size: 1.2rem;
-}
-.hero-content h1 {
-    font-size: 5rem; 
-    margin: 0;
-    line-height: 1;
-}
-
-/* --- DEFAULT BUTTON STYLE --- */
-.discover-btn {
-    background-color: transparent; 
-    color: white; 
-    border: 2px solid white; 
-    padding: 10px 20px; 
-    font-size: 0.9em;
-    font-weight: bold;
-    letter-spacing: 2px; 
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
     text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 20px;
+    transition: 0.5s ease;
+}
+:root {
+    --white-color: #fff;
+    --main-orange: #072A6C;
+    --button-blue: #072A6C;
+    --dark-overlay: rgba(0, 0, 0, 0.5); 
 }
 
-/* --- LOGIC ARON MATAGO ANG DEFAULT BUTTON (Iligan City View) --- */
-#mainDiscoverBtn {
-    opacity: 0;
-    pointer-events: none; /* Dili ma-click bisan pa og invisible */
-    transition: opacity 0.5s ease, transform 0.3s ease;
-}
-
-/* --- LOGIC ARON MOPAKITA ANG BUTTON (Kung na-click na ang Falls) --- */
-#mainDiscoverBtn.visible {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.discover-btn:hover {
-    background-color: white; 
-    color: black; 
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
-}
-
-.image-carousel {
-    position: absolute; 
-    bottom: 50px; 
-    left: 500px; 
-    width: calc(100% - 500px); 
-    display: flex; 
-    flex-direction: column; 
-    z-index: 5;
-}
-
-/* CARD LIST  */
-.card-list {
-    display: flex; 
-    flex-wrap: nowrap; 
-    overflow-x: hidden; 
-    scroll-behavior: smooth; 
-    padding-left: 50px; 
-}
-.card-list::-webkit-scrollbar {
-    height: 0; 
-}
-
-/* INDIVIDUAL CARDS NI */
-.card {
-    position: relative;
-    cursor: pointer; 
-    flex-shrink: 0; 
-    width: 200px; 
-    height: 300px; 
-    margin-right: 25px; 
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
-    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, outline 0.3s;
-}
-.card:hover {
-    transform: translateY(-20px); 
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8); 
-}
-.card.active-card {
-    outline: 5px solid rgba(17, 0, 255, 0.7); 
-    transform: translateY(-20px); 
-}
-
-.card img {
+body {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+    /* Removed height: 100vh; para mo-expand ang page pag-dugang sa About section */
+    background-color: #020233; /* Set the body background to match the About section background */
 }
 
-/* TEXT SA CARD --- */
-.card-overlay-text {
+/* --- 1. VIDEO BACKGROUND STYLE --- */
+#background-video {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover; 
+    filter: none;
+    z-index: -2; /* Set to -2 para sa pinaka-ubos */
+}
+
+/* --- HERO SECTION: Container for Overlay and Content --- */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    color: var(--white-color);
+    z-index: 1; /* Para naa sa ibabaw sa video */
+}
+
+/* --- Dark Overlay sa ibabaw sa Video (Para sa Hero Section lang) --- */
+.hero-section::before {
+    content: '';
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
-    padding: 20px 15px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)); 
-}
-.card-title {
-    margin: 0;
-    font-size: 1.1em;
-    line-height: 1.2;
-    font-weight: bold;
+    height: 100%;
+    background: var(--dark-overlay); 
+    z-index: -1; /* Ubos sa content, ibabaw sa video */
 }
 
-/* (Buttons) --- */
-.carousel-controls {
+/* --- NAVBAR STYLES (HOME) --- */
+.navbar {
+    padding: 20px 50px;
     position: absolute; 
-    bottom: -60px; 
-    left: 50px; 
+    width: 100%;
     z-index: 10;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
 }
-.arrow-btn {
-    background-color: rgba(255, 255, 255, 0.2); 
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 50%; 
-    width: 40px;
-    height: 40px;
-    font-size: 1.2em;
-    cursor: pointer;
-    margin-right: 15px;
-    transition: background-color 0.3s;
+
+.right-spacer {
+    width: 150px; 
 }
-.arrow-btn:hover {
-    background-color: rgba(255, 255, 255, 0.5); 
+
+.site-logo {
+    height: 60px; 
+    width: auto;
+}
+
+.navbar .menu {
+    margin: 0; 
+}
+
+.navbar .menu ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.navbar .menu ul li a {
+    color: var(--white-color);
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar .menu ul li a:hover {
+    border-bottom: 2px solid var(--main-orange);
+}
+
+/* --- HERO CONTENT STYLES (HOME) --- */
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 5;
+    width: 90%;
+}
+
+.hero-content .line1 {
+    font-size: 4rem; 
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0px; 
+    font-family: 'Playfair Display', serif;
+    color: var(--white-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-content .line2 {
+    font-size: 10rem; 
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 15px; 
+    font-family: 'Great Vibes', cursive;
+    color: var(--white-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    text-transform: capitalize;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 40px;
+    color: var(--white-color);
+}
+
+.selection-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.action-btn {
+    padding: 10px 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.chill-btn {
+    background-color: var(--button-blue);
+    color: var(--white-color);
+    border: 2px solid var(--button-blue);
+}
+
+.chill-btn:hover {
+    background-color: transparent;
+    border-color: var(--white-color);
+    color: var(--white-color);
+}
+
+.falls-btn {
+    background-color: #072A6C;
+    color: var(--white-color);
+    border: 2px solid #072A6C;
+}
+
+.falls-btn:hover {
+    background-color: transparent; 
+    border-color: white;
+    color: var(--white-color);
+}
+
+
+/* ABOUT SECTION  */
+
+.content-container {
+    padding: 50px 50px; 
+    background-color: #020233; 
+    color: #fff; 
+    /* Ensure para mo appear above the video */
+    position: relative; 
+    z-index: 2; 
+    font-family: 'Roboto', sans-serif; 
+
+.about-us-section {
+    display: flex;
+}
+
+.about-us-title {
+    width: 25%; 
+    padding-top: 40px;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.about-us-title h1 {
+    font-size: 3.5vw;
+    margin: 0;
+    color: #aaa; 
+}
+
+.about-us-title h2 {
+    font-size: 5vw;
+    margin: 0;
+    color: #fff; 
+    font-family: 'Playfair Display', serif;
+}
+
+.text-and-contact {
+    width: 75%; 
+    display: flex;
+    justify-content: space-between;
+    padding-top: 40px;
+}
+
+.about-text {
+    width: 55%; 
+    margin-right: 40px;
+}
+
+.about-text p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #aaa; 
+    text-transform: none; 
+}
+
+/* Contact Box (Box sa tuo) --- */
+.contact-info {
+    width: 40%; 
+    background-color: #020233; 
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.building-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.contact-info h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    color: #fff;
+    border-bottom: 1px solid #444; 
+    padding-bottom: 15px;
+}
+
+.contact-info p {
+    font-size: 12px;
+    line-height: 1.4;
+    margin: 5px 0;
+    color: #aaa;
+    
+}
 }
